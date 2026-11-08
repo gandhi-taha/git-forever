@@ -1,35 +1,41 @@
-## Introduction to Git Github(Basics)
+# git-forever
 
-# What is version control?
-Version control systems are a category of software tools that help a software team manage changes to source code over time. Version control software keeps track of every modification to the code in a special kind of database. If a mistake is made, developers can turn back the clock and compare earlier versions of the code to help fix the mistake while minimizing disruption to all team members.
+My notes on Git and GitHub basics from 2020, kept as a reference. They walk through setting up Git, the everyday commands and a short cheatsheet at the end.
 
-**For almost all software projects, the source code is like the crown jewels - a precious asset whose value must be protected.**
+The step-by-step part is based on Asabeneh Yetayeh's [Git-and-Github](https://github.com/Asabeneh/Git-and-Github) guide.
 
-# Git
-Git is a version control tool. In one way or the other you may need to use a git and a github.
-You need to use git and github either to store your projects on the cloud or to collabrate with your team.
+A few things have changed since I wrote this:
 
-# Github
-GitHub is a website and service that we hear geeks rave about all the time, yet a lot of people don’t really understand what it does. Want to know what all the GitHub hubbub is about? Read on to find out.
+- GitHub now names the default branch `main`. If your repository uses `main`, replace `master` with `main` in the commands below.
+- Newer Git versions also have `git switch` (change branches) and `git restore` (undo changes). The older `git checkout` and `git reset` commands below still work.
 
-## 1. Install Git and Signup on Github
+## What is version control?
 
-- Git:
-  Install [git](https://git-scm.com/downloads)
-- Github
-  Signup on [github](https://github.com/join)
-  
-  ## 2. Configure your name and your email
+Version control keeps a history of every change to a set of files. If something breaks, you can go back to an earlier version, compare it with the current one and see who changed what.
+
+## Git
+
+Git is a version control tool. It runs on your own machine and tracks changes in a project folder (a repository).
+
+## GitHub
+
+GitHub is a website that hosts Git repositories. You use it to keep your projects online and to work on them with other people.
+
+## 1. Install Git and sign up on GitHub
+
+- Git: install [Git](https://git-scm.com/downloads)
+- GitHub: sign up on [GitHub](https://github.com/signup)
+
+## 2. Configure your name and email
 
 ```shell
 git config --global user.name 'yourname'
 git config --global user.email 'youremail'
 ```
 
-## 3. Create a local git repository
+## 3. Create a local Git repository
 
-On this step your will create a folder (directory) for your project. A local repository is a project or a folder which is on your computer.
-Go to start and type git bash. Git terminal will popup. On the terminal write:
+A local repository is a project folder on your computer. Open a terminal (on Windows, Git Bash) and run:
 
 ```shell
 mkdir project_name
@@ -38,179 +44,160 @@ cd project_name
 
 ## 4. Initialize Git
 
-After creating a new local repository or in an existing local repository, intitialize the repository by the following command:
+Inside a new or existing project folder, initialize the repository:
 
 ```shell
-   git init
+git init
 ```
 
-Once, the repository is intialized git tracks the changes in the files and folders.
+Once the repository is initialized, Git tracks changes to the files and folders in it.
 
-## 5. Add file to the staging area
+## 5. Add files to the staging area
 
-File can be added to the stagging area in multiple ways.
-To add single file
+To add a single file:
 
 ```shell
-   git add filename
+git add filename
 ```
 
-To add multiple files
+To add multiple files:
 
 ```shell
-   git add filename1 filename2
+git add filename1 filename2
 ```
 
-To add all files and folders at once
+To add all files and folders at once:
 
 ```shell
-   git add .
+git add .
 ```
 
 ## 6. Unstage a file
 
 ```shell
-    git reset HEAD filename
+git reset HEAD filename
 ```
 
 ## 7. Commit the changes
 
-Commiting means taking a snapshot or a copy of your file at that point of time.
+A commit is a snapshot of your files at that point in time.
 
 ```shell
-   git commit -m 'your message'
+git commit -m 'your message'
 ```
 
-Your commit message has to be associated with the changes or modification you make.
+The commit message should describe the change you made.
 
-## 8. Creating a branch
+## 8. Create a branch
 
-You can create copy of the master using branch. You built an awesome application. You like to keep this awesome application as it is and you like to add some features.
-This is the time, you need branching the master. Branch is the copy of the master at branching instant. After branching the branch and the master they don't see each other. You can create as many branches as you want.
+A branch is a copy of the project at the moment you create it. Say you have a working application and want to add a feature without touching the working version: create a branch, build the feature there, and merge it back when it's done. You can create as many branches as you want.
 
-To create branch:
-
-- Only to create branch
+To only create a branch:
 
 ```shell
-    git branch branchname
-
+git branch branchname
 ```
 
-To create branch:
-
-- To create and checkout to the branch at the same time:
+To create a branch and switch to it at the same time:
 
 ```shell
-    git checkout -b branchname
-
+git checkout -b branchname
 ```
 
 To switch between branches:
 
 ```shell
-    git checkout master
-    git checkout branchname
+git checkout master
+git checkout branchname
 ```
 
-To list down all the branches:
+To list all branches:
 
 ```shell
-    git branch
+git branch
 ```
 
-## 9. Create Repository on Github
+## 9. Create a repository on GitHub
 
-Go to [github](https://github.com/) and create a repository by click the plus icon on the top right corner.
+Go to [GitHub](https://github.com/) and create a repository by clicking the plus icon in the top right corner.
 
-## 10. Connecting git with remote repository
+## 10. Connect your local repository to GitHub
 
-In this step you will connect your local git repository with your remote github repository
+This connects your local repository with the remote one on GitHub:
 
 ```shell
-    git remote add origin remote_repository_ul
-
+git remote add origin remote_repository_url
 ```
 
-The word origin could be any word. It is a means to assign the repository url.
-If this is step is passed without error, you are ready to push it to your remote github repository
+`origin` is just a name for the remote URL. You could use any word, but `origin` is the convention. If this step runs without errors, you are ready to push.
 
 ## 11. Push
 
-Commits if you have any changes and be ready to push your files to your remote github repository
-git push -u origin master
-```shell
-    git push -u origin master
+Commit your changes, then push them to the remote repository:
 
+```shell
+git push -u origin master
 ```
 
 ## 12. Merge
 
-When you work on an individual project or a team project you may have different branches. Mostly you will have master, develop and other branchs.Then you will merge other branchs to your develop and your develop to master. It is possible to merge any branches. For instance lets merge feature branch to develop
+In most projects you will have several branches, for example `master`, `develop` and feature branches. Feature branches get merged into `develop`, and `develop` gets merged into `master`. You can merge any branch into any other. For example, to merge a `feature` branch into `develop`:
 
 ```shell
-    git checkout develop
-    git merge feature
-
+git checkout develop
+git merge feature
 ```
 
-## 12. Pull
+## 13. Pull
 
-If your team merge new features to the develop. Then you will be behind, now you need to make your project to current stage by pulling from develop
+If your team has merged new work into `develop`, your branch is behind. Pull the latest `develop` into your branch, then merge your branch back:
 
 ```shell
-    git checkout yourbranch
-    git pull origin develop
-    git checkout develop
-    git merge yourbranch
-    git push -u origin develop
-
-
+git checkout yourbranch
+git pull origin develop
+git checkout develop
+git merge yourbranch
+git push -u origin develop
 ```
 
-## Git cheatsheet:
+## Git cheatsheet
 
-Here you have the basic git commands which might be useful:
+Basic Git commands that come up often:
 
 ```shell
-git --version //to check the version
-git help  // To get help from git
-git help commit // To get commit help
+git --version                 # check the installed version
+git help                      # general help
+git help commit               # help for a specific command
 
-git init  // Initilaizing git repository on local machine
+git init                      # initialize a repository on your machine
 
-git config --list // to check what is configured
-git config // to get information about configuration
-git config --global user.name "username" //Configuring git user name
-git config --global user.email "email" //Configuring git user email
+git config --list             # show the current configuration
+git config --global user.name "username"   # set your user name
+git config --global user.email "email"     # set your email
 
-git add filename
-git add first.txt # adding only one file
-git add second.txt third.txt // to add multiple file
-git add . //To add all the files and folders to the staging area
+git add first.txt             # stage one file
+git add second.txt third.txt  # stage multiple files
+git add .                     # stage all files and folders
 
-git commit -m 'commit message' // after staging using add
-git commit -a -m 'commit message' // staging using a and commiting
-git commit -am 'commit message' // staging and committing
+git commit -m 'commit message'      # commit staged changes
+git commit -a -m 'commit message'   # stage tracked files and commit
+git commit -am 'commit message'     # same as above, shorter
 
-git commit -am "Message" #Grab every thing in the working copy and -a allows to skip the staging copy
-git log  // To see the history on the repository
-git log --author ="name" #To check change by specific user
-git status  //To check changes or status of the file
+git log                       # show the commit history
+git log --author="name"       # show commits by a specific author
+git status                    # show the state of your files
 
+git diff                      # compare the working copy with the staging area
+git diff --staged             # compare the staging area with the last commit
 
-git diff #Compare workin copy in the repository
-git diff --staged # Compare files in the staging area
+git rm filename               # delete a file and stage the deletion
+git mv filename1 filename2    # rename a file
+git mv filename foldername/filename2   # move a file into a folder
 
-git rm filename
-git mv filename1 filename2
-git mv filename foldernam/filename2
-git commit -am "This skip the stage process"
-git checkout -- filename #To get working copy back
-git reset  HEAD filename // removes from the staging area/unstage
-git checkout 01e7ba -- filename # Tracking the differentversion of the project
-git remote add anyname repositoryUrl
-git push -u remote master // to push the file into github
-git checkout 01e7ba -- filename
-git remote add anyname repositoryUrl
+git checkout -- filename      # throw away changes in the working copy
+git reset HEAD filename       # remove a file from the staging area
+git checkout 01e7ba -- filename   # get a file as it was in commit 01e7ba
+
+git remote add anyname repositoryUrl   # add a remote
+git push -u origin master     # push to GitHub
 ```
